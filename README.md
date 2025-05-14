@@ -33,7 +33,7 @@ The modeling process explored:
 - Final validation accuracy: **~78%**
 - Improved recall for `mel` (melanoma) and `vasc` (vascular) lesions
 
-## 📂 Project Files
+##  Project Files
 
 | File | Description |
 |------|-------------|
@@ -41,17 +41,17 @@ The modeling process explored:
 | `02_exploratory_data_analysis.ipynb` | Visual EDA of lesion distribution and features |
 | `03_prepocessing_and_training.ipynb` | Metadata model training and evaluation |
 | `04_MODELING.ipynb` | CNN, EfficientNet, and multimodal model building |
-| `model_metrics.md` | 📈 Final model evaluation summary |
+| `model_metrics.md` | Final model evaluation summary |
 | `teledermatology_cnn_model.keras` | Final trained CNN model file |
-| `README.md` | 📘 This file |
+| `README.md` | Final model evaluation|
 
-## 📌 Recommendations
+##  Recommendations
 
 1. Deploy model in clinical support setting for triage prioritization
 2. Gather more rare lesion samples to boost minority class generalization
 3. Extend multimodal pipeline with patient history and time-series data
 
-## 🙋‍♂️ Author
+##  Author
 
 **Manuel Ramirez Chimarro**  
 [LinkedIn](https://www.linkedin.com/in/manuelramirezchimarro/) 
@@ -80,7 +80,7 @@ The modeling process explored:
 
 ---
 
-## 📈 Performance Summary
+##  Performance Summary
 
 | Class                | Precision | Recall | F1-Score | Support  |
 | -------------------- | --------- | ------ | -------- | -------- |
