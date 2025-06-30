@@ -1,112 +1,241 @@
-# Teledermatology Skin Lesion Classification capstone
+Teledermatology Skin Lesion Classification — Capstone 3
 
-This repository presents the final capstone project for the Springboard Data Science Career Track. The goal was to develop a machine learning solution for classifying dermatological skin lesions using the HAM10000 dataset, enabling improved triage and early diagnosis support in teledermatology.
+Springboard Data Science Career Track – Final Project Author: Manuel Ramirez Chimarro Date: May 2025
 
-##  Project Overview
+1  Executive Summary
 
-- **Domain**: Healthcare / Dermatology
-- **Objective**: Classify seven types of skin lesions from image and metadata inputs
-- **Dataset**: [HAM10000](https://www.kaggle.com/datasets/kmader/skin-cancer-mnist-ham10000)
-- **Techniques Used**: CNNs, EfficientNet, Metadata Fusion, Focal Loss, Data Augmentation
+This capstone project addresses the challenge of early and accurate classification of skin lesion types through teledermatology. Using the HAM10000 dataset — which includes ~10,000 dermoscopic images and structured metadata — I evaluated a range of models, including logistic regression, random forest, CNNs, and fine-tuned EfficientNet architectures.
 
-## Problem Statement
+The final model, EfficientNetB3, achieved a 64% accuracy and showed a significant performance gain on minority lesion types compared to EfficientNetB0 (46%). These findings support the deployment of ML-assisted triage systems for skin conditions.
 
-Dermatological triage, especially in remote areas, can benefit from AI support to classify skin lesions and prioritize care. The problem is class imbalance and difficulty in identifying minority class lesions (e.g., melanoma, vascular lesions).
+2  Problem Statement
 
-## Modeling Summary
+Skin cancer and dermatological disorders require early detection for effective treatment. In underserved or remote areas, specialist access is limited. This project proposes an automated tool to classify skin lesions from both dermoscopic images and patient metadata, improving remote diagnostics via teledermatology.
 
-The modeling process explored:
-- **Baseline Models**: Logistic Regression, Random Forest using patient metadata
-- **CNN Model**: Custom CNN using lesion images
-- **EfficientNetB0 & B3**: Fine-tuned pretrained models with frozen base layers
-- **Multimodal Model**: Combined image and metadata input
-- **Focal Loss**: Used to improve minority class performance
-- **Data Augmentation**: Strong augmentation applied to improve generalization
+3  Dataset Description
 
-➡ **Final model** achieved ~78% accuracy with improved recall on minority classes.
+Source: HAM10000
+
+Samples: ~10,000 dermoscopic images
+
+Lesion Classes: nv, mel, bkl, bcc, akiec, vasc, df
+
+Metadata: age, sex, lesion localization, diagnosis type
+
+4  Methodology
+
+Preprocessing
+
+Images resized to 64x64 and normalized.
+
+Metadata cleaned, encoded, and scaled.
+
+Combined image paths and metadata labels for modeling.
+
+Baseline Models (Metadata Only)
+
+Model
+
+Accuracy
+
+Precision
+
+Recall
+
+F1-Score
+
+Logistic Regression
+
+0.71
+
+0.65
+
+0.71
+
+0.66
+
+Random Forest
+
+0.72
+
+0.68
+
+0.72
+
+0.69
+
+CNN on Images
+
+Simple CNN with 2 convolutional blocks.
+
+Accuracy: 75%
+
+EfficientNetB0
+
+Transfer learning + data augmentation (rotation, flip, brightness).
+
+Applied focal loss to handle class imbalance.
+
+Accuracy: 78%
+
+EfficientNetB3 (Final Model)
+
+Combined image features with metadata in a multimodal architecture.
+
+Applied extensive augmentation and tuned training.
+
+Final Accuracy: 64% (on stratified validation set)
+
+5  Final Evaluation Metrics (EfficientNetB3)
+
+Class
+
+Precision
+
+Recall
+
+F1-Score
+
+Support
+
+akiec
+
+0.49
+
+0.44
+
+0.46
+
+220
+
+bcc
+
+0.82
+
+0.94
+
+0.87
+
+1341
+
+bkl
+
+0.36
+
+0.17
+
+0.24
+
+23
+
+df
+
+0.32
+
+0.25
+
+0.28
+
+223
+
+mel
+
+0.64
+
+0.25
+
+0.36
+
+28
+
+nv
+
+0.30
+
+0.17
+
+0.22
+
+103
+
+vasc
+
+0.30
+
+0.09
+
+0.14
+
+65
+
+Overall Accuracy
 
 
-## Key Results
-
-- Focal loss improved sensitivity to rare lesions
-- CNN outperformed metadata-only models
-- Final validation accuracy: **~78%**
-- Improved recall for `mel` (melanoma) and `vasc` (vascular) lesions
-
-##  Project Files
-
-| File | Description |
-|------|-------------|
-| `01-data-wrangling.ipynb` | Data cleaning and preprocessing |
-| `02_exploratory_data_analysis.ipynb` | Visual EDA of lesion distribution and features |
-| `03_prepocessing_and_training.ipynb` | Metadata model training and evaluation |
-| `04_MODELING.ipynb` | CNN, EfficientNet, and multimodal model building |
-| `model_metrics.md` | Final model evaluation summary |
-| `teledermatology_cnn_model.keras` | Final trained CNN model file |
-| `README.md` | Final model evaluation|
-
-##  Recommendations
-
-1. Deploy model in clinical support setting for triage prioritization
-2. Gather more rare lesion samples to boost minority class generalization
-3. Extend multimodal pipeline with patient history and time-series data
-
-##  Author
-
-**Manuel Ramirez Chimarro**  
-[LinkedIn](https://www.linkedin.com/in/manuelramirezchimarro/) 
-
----
-
-> Project completed as part of the Springboard Data Science Career Track, Capstone Three.
 
 
 
+0.64
 
+2003
 
-#  Model Metrics: Skin Lesion Classification (Capstone 3)
+6  Visualizations
 
-##  Final Model Overview
+Training vs. validation loss and accuracy curves
 
-* **Architecture**: Multimodal EfficientNetB3 + Metadata (Dense Layer)
-* **Input Modalities**:
+Confusion matrix for class-level performance
 
-  * **Images** (64x64 RGB Lesion Images)
-  * **Metadata**: Age, Sex (encoded), Localization (encoded)
-* **Loss Function**: Focal Loss (γ = 2.0, α = 1.0)
-* **Optimizer**: Adam (Learning Rate = 1e-4)
-* **Data Augmentation**: Rotation, Flip, Zoom, Brightness adjustments
-* **Train/Validation Split**: 80/20 (Stratified)
+Validation grid (true vs. predicted labels)
 
----
+7  Repository Structure
 
-##  Performance Summary
+File
 
-| Class                | Precision | Recall | F1-Score | Support  |
-| -------------------- | --------- | ------ | -------- | -------- |
-| akiec                | 0.49      | 0.44   | 0.46     | 220      |
-| bcc                  | 0.82      | 0.94   | 0.87     | 1341     |
-| bkl                  | 0.36      | 0.17   | 0.24     | 23       |
-| df                   | 0.32      | 0.25   | 0.28     | 223      |
-| mel                  | 0.64      | 0.25   | 0.36     | 28       |
-| nv                   | 0.30      | 0.17   | 0.22     | 103      |
-| vasc                 | 0.30      | 0.09   | 0.14     | 65       |
-| **Overall Accuracy** |           |        | **0.78** | **2003** |
+Description
 
----
+01_data_wrangling.ipynb
 
-##  Model Highlights
+Data cleaning and preprocessing
 
-* **Focal Loss** significantly improved learning on minority classes.
-* **Data Augmentation** helped regularize training and reduce overfitting.
-* **Multimodal Integration** of metadata with image features led to more robust predictions.
+02_exploratory_data_analysis.ipynb
 
----
+Visual EDA of lesion distribution and features
 
-##  Future Improvements
+03_preprocessing_and_training.ipynb
 
-* Tune focal loss `alpha` and `gamma` values per class frequency
-* Use **EfficientNetB4** or **fine-tune top layers**
-* Add **skin tone normalization** or lesion boundary detection
+Metadata-only model training
 
----
+04_MODELING.ipynb
+
+CNN, EfficientNet, and multimodal pipelines
+
+model_metrics.md
+
+Final model metrics summary
+
+teledermatology_cnn_model.keras
+
+Trained CNN model file
+
+assets/
+
+Static plots and confusion matrix images
+
+8  Recommendations
+
+Deploy EfficientNetB3 in a clinical triage tool for general practitioners.
+
+Address underrepresented classes with synthetic oversampling or GANs.
+
+Consider lightweight CNNs (e.g., MobileNet) for mobile applications.
+
+9  Future Work
+
+Refine multimodal architecture with hyperparameter tuning
+
+Try ensemble methods to boost classification performance
+
+Validate on external clinical datasets
+
+Add Grad-CAM visualizations for interpretability
+
+⚠️ Disclaimer: This model is a research prototype and not intended for clinical use without regulatory clearance.
