@@ -1,18 +1,18 @@
-Teledermatology Skin Lesion Classification — Capstone 3
+## Teledermatology Skin Lesion Classification — Capstone 3
 
 Springboard Data Science Career Track – Final Project Author: Manuel Ramirez Chimarro Date: May 2025
 
-1  Executive Summary
+## 1  Executive Summary
 
 This capstone project addresses the challenge of early and accurate classification of skin lesion types through teledermatology. Using the HAM10000 dataset — which includes ~10,000 dermoscopic images and structured metadata — I evaluated a range of models, including logistic regression, random forest, CNNs, and fine-tuned EfficientNet architectures.
 
 The final model, EfficientNetB3, achieved a 64% accuracy and showed a significant performance gain on minority lesion types compared to EfficientNetB0 (46%). These findings support the deployment of ML-assisted triage systems for skin conditions.
 
-2  Problem Statement
+## 2  Problem Statement
 
 Skin cancer and dermatological disorders require early detection for effective treatment. In underserved or remote areas, specialist access is limited. This project proposes an automated tool to classify skin lesions from both dermoscopic images and patient metadata, improving remote diagnostics via teledermatology.
 
-3  Dataset Description
+## 3  Dataset Description
 
 Source: HAM10000
 
@@ -22,7 +22,7 @@ Lesion Classes: nv, mel, bkl, bcc, akiec, vasc, df
 
 Metadata: age, sex, lesion localization, diagnosis type
 
-4  Methodology
+## 4  Methodology
 
 Preprocessing
 
@@ -86,7 +86,7 @@ Applied extensive augmentation and tuned training.
 
 Final Accuracy: 64% (on stratified validation set)
 
-5  Final Evaluation Metrics (EfficientNetB3)
+## 5  Final Evaluation Metrics (EfficientNetB3)
 
 Class
 
@@ -178,7 +178,7 @@ Overall Accuracy
 
 2003
 
-6  Visualizations
+## 6  Visualizations
 
 Training vs. validation loss and accuracy curves
 
@@ -186,7 +186,7 @@ Confusion matrix for class-level performance
 
 Validation grid (true vs. predicted labels)
 
-7  Repository Structure
+## 7  Repository Structure
 
 File
 
@@ -220,7 +220,7 @@ assets/
 
 Static plots and confusion matrix images
 
-8  Recommendations
+## 8  Recommendations
 
 Deploy EfficientNetB3 in a clinical triage tool for general practitioners.
 
@@ -228,7 +228,7 @@ Address underrepresented classes with synthetic oversampling or GANs.
 
 Consider lightweight CNNs (e.g., MobileNet) for mobile applications.
 
-9  Future Work
+## 9  Future Work
 
 Refine multimodal architecture with hyperparameter tuning
 
@@ -238,4 +238,4 @@ Validate on external clinical datasets
 
 Add Grad-CAM visualizations for interpretability
 
-⚠️ Disclaimer: This model is a research prototype and not intended for clinical use without regulatory clearance.
+ Disclaimer: This model is a research prototype and not intended for clinical use without regulatory clearance.
